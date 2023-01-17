@@ -1,0 +1,55 @@
+.app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: hsl(228, 100%, 84%);
+}
+
+.content-wrapper {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    max-width: 1000px;
+    width: 90%;
+    height: 80%;
+
+    display: flex;
+    
+}
+
+.content-wrapper .form-sidebar {
+    flex: 1;
+    background: url("./assets/images/bg-sidebar-desktop.svg") center / cover;
+    border-radius: 5px;
+}
+
+.content-wrapper .form-content {
+    flex: 3;
+    padding: 3rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.content-wrapper .form-content .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.content-wrapper .form-content .buttons button {
+    padding: .5rem 1rem;
+    border-radius: 5px;
+    border: none;
+    outline: 0;
+    cursor: pointer;
+}
+
+.step.active{
+    background-color: hsl(228, 100%, 84%);
+    color: #fff;
+}
