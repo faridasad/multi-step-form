@@ -1,7 +1,6 @@
 
 function AddOnsForm(options : {title: string}) {
   return (
-    <form>
       <div className="wrapper">
         <h2>Pick add-ons</h2>
         <p>Add-ons help enhance your gaming experience</p>
@@ -14,7 +13,6 @@ function AddOnsForm(options : {title: string}) {
           <label htmlFor="Customizable Profile">Customizable Profile</label>
         </div>
       </div>
-    </form>
   )
 }
 

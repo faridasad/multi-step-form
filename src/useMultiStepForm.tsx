@@ -1,6 +1,5 @@
 import { ReactElement, useState } from "react";
 
-
 export function useMultiStepForm(steps: ReactElement[]) {
   const [stepIndex, setStepIndex] = useState(0);
 
@@ -16,5 +15,13 @@ export function useMultiStepForm(steps: ReactElement[]) {
     });
   };
 
-  return { stepIndex, next, prev, step: steps[stepIndex], title: steps[stepIndex].props.title };
+  return {
+    stepIndex,
+    next,
+    prev,
+    step: steps[stepIndex],
+    title: steps[stepIndex].props.title,
+    isLastStep: stepIndex === steps.length - 1,
+    isFirstStep: stepIndex === 0,
+  };
 }
