@@ -1,5 +1,3 @@
-import { FormEvent } from "react";
-
 type AddOnsData = {
   title: string;
   addons: string[];
