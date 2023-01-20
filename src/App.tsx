@@ -101,8 +101,11 @@ function App() {
                 key={i}
                 className={`step ${i === stepIndex ? "active" : ""}`}
               >
-                <div className="step-number">{i + 1}</div>
-                <div className="step-title">{s.props.title}</div>
+                <div className="step-index"><span>{i + 1}</span></div>
+                <div className="step-info">
+                  <span className="step-num">STEP {i + 1}</span>
+                  <span className="step-title">{steps[i].props.title}</span>
+                </div>
               </div>
             );
           })}
