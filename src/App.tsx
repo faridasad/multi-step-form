@@ -27,8 +27,6 @@ function App() {
 
   const [data, setData] = useState(INITIAL_DATA);
 
-  console.log(data);
-
   function updateFields(fields: Partial<FormData>) {
     setData((prev) => {
       return { ...prev, ...fields };
