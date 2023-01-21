@@ -4,6 +4,8 @@
   justify-content: center;
   height: 100vh;
   background-color: hsl(228, 100%, 84%);
+
+  font-family: "Ubuntu-Regular", sans-serif;
 }
 
 .content-wrapper {
@@ -64,7 +66,7 @@
 }
 
 .content-wrapper .form-content .buttons button.next-btn {
-  background-color: hsl(228, 100%, 84%);
+  background-color: hsl(213, 96%, 18%);
   color: #fff;
 }
 
@@ -108,7 +110,7 @@
 
 .step.active .step-index span {
   background-color: #fff;
-  color: hsl(228, 100%, 84%);
+  color: hsl(213, 96%, 18%);
 }
 
 
