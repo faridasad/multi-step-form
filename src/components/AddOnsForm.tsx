@@ -1,5 +1,6 @@
 type AddOnsData = {
   title: string;
+  billing: string;
   addons: string[];
 };
 
@@ -7,7 +8,7 @@ type AddOnsProps = AddOnsData & {
   updateAddOns: (addon: string) => void;
 };
 
-function AddOnsForm({ title, addons, updateAddOns }: AddOnsProps) {
+function AddOnsForm({ title, addons, billing, updateAddOns }: AddOnsProps) {
   return (
     <div className="wrapper">
       <h2>Pick add-ons</h2>
@@ -23,7 +24,14 @@ function AddOnsForm({ title, addons, updateAddOns }: AddOnsProps) {
             updateAddOns(name);
           }}
         />
-        <label htmlFor="online-service">Online Service</label>
+        <label htmlFor="online-service">
+          <span></span>
+          <div>
+            <h3>Online Service</h3>
+            <p>Access to multiplayer games</p>
+          </div>
+          <p className="price-text">{billing === "monthly" ? "+$1/mo" : "+$10/yr"}</p>
+        </label>
         <input
           type="checkbox"
           name="larger-storage"
@@ -34,7 +42,14 @@ function AddOnsForm({ title, addons, updateAddOns }: AddOnsProps) {
             updateAddOns(name);
           }}
         />
-        <label htmlFor="larger-storage">Larger Storage</label>
+        <label htmlFor="larger-storage">
+        <span></span>
+          <div>
+            <h3>Larger storage</h3>
+            <p>Extra 1TB of cloud save</p>
+          </div>
+          <p className="price-text">{billing === "monthly" ? "+$2/mo" : "+$20/yr"}</p>
+        </label>
         <input
           type="checkbox"
           name="customizable-profile"
@@ -45,7 +60,14 @@ function AddOnsForm({ title, addons, updateAddOns }: AddOnsProps) {
             updateAddOns(name);
           }}
         />
-        <label htmlFor="Customizable Profile">Customizable Profile</label>
+        <label htmlFor="Customizable Profile">
+        <span></span>
+          <div>
+            <h3>Customizable profile</h3>
+            <p>Custom theme on your profile</p>
+          </div>
+          <p className="price-text">{billing === "monthly" ? "+$2/mo" : "+$20/yr"}</p>
+        </label>
       </div>
     </div>
   );
