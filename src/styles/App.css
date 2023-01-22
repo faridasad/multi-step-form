@@ -101,11 +101,14 @@
 
 .step-info .step-num {
   font-size: 0.7rem;
+  font-weight: 500;
+  opacity: 0.8;
 }
 
 .step-info .step-title {
   font-size: 0.8rem;
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 .step.active .step-index span {
@@ -164,30 +167,68 @@
   margin-top: 2rem;
 }
 
-.selection-container .plans input[type="radio"] {
-  display: none;
+.selection-container .plans label span{
+  width: 40px;
+  height: 40px;
 }
 
-.selection-container .plans input[type="radio"] + label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 150px;
-  height: 150px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  cursor: pointer;
+.selection-container .plans label span img {
+  width: 100%;
+  height: 100%;
+}
+
+.selection-container .plans label.arcade span {
+  background: url("../assets/images/icon-arcade.svg") no-repeat center / cover ;
+}
+.selection-container .plans label.advanced span {
+  background: url("../assets/images/icon-advanced.svg") no-repeat center / cover ;
+}
+.selection-container .plans label.pro span {
+  background: url("../assets/images/icon-pro.svg") no-repeat center / cover ;
 }
 
 .selection-container .plans input[type="radio"]:checked + label {
-  border: 3px solid hsl(228, 100%, 84%);
-  background-color: #ccc;
+  outline: 1px solid hsl(243, 100%, 62%);
+  background-color: hsl(217, 100%, 97%);
 }
 
-.selection-container .plans input[type="radio"] + label:hover {
-  border: 3px solid hsl(228, 100%, 84%);
-  background-color: #ccc;
+.selection-container .plans label {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 150px;
+  height: 175px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: .7rem;
+}
+
+.selection-container .plans label .label-texts {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.selection-container .plans label .label-texts h3 {
+  color: hsl(213, 96%, 18%);
+  font-weight: 700;
+}
+
+.selection-container .plans label .label-texts .label-price-text {
+  font-size: 0.8rem;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.selection-container .plans label .label-texts .label-months {
+  font-size: 0.9rem;
+  color: hsl(213, 96%, 18%);
+  font-weight: 700;
+}
+
+.selection-container .plans input[type="radio"] {
+  display: none;
 }
 
 .billing-time {
@@ -196,7 +237,7 @@
   justify-content: center;
   gap: 1rem;
   width: 100%;
-  background-color: #ccc;
+  background-color: hsl(217, 100%, 97%);
   padding: .5rem 0;
 }
 
