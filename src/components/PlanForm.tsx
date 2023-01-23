@@ -9,6 +9,8 @@ type PlanProps = PlanData & {
   updateBilling: (billing: string) => void;
 };
 
+import {fakePlans} from "../db/FakeData"
+
 function PlanForm({
   title,
   plan,
@@ -22,57 +24,31 @@ function PlanForm({
       <p>You have the option of monthly of yearly billing</p>
       <div className="selection-container">
         <div className="plans">
-          <input
-            type="radio"
-            name="radios"
-            id="arcade"
-            defaultChecked={plan === "arcade"}
-            onClick={() => {
-              updatePlan("arcade");
-            }}
-          />
-          <label htmlFor="arcade" className="label arcade">
-            <span></span>
-            <div className="label-texts">
-              <h3>Arcade</h3>
-              <p className="label-price-text">{billing === "monthly" ? "$9/mo" : "$90/yr"}</p>
-              {billing === "yearly" && <p className="label-months">2 months free</p>}
-            </div>
-          </label>
-          <input
-            type="radio"
-            name="radios"
-            id="advanced"
-            defaultChecked={plan === "advanced"}
-            onClick={() => {
-              updatePlan("advanced");
-            }}
-          />
-          <label htmlFor="advanced" className="label advanced">
-            <span></span>
-            <div className="label-texts">
-              <h3>Advanced</h3>
-              <p className="label-price-text">{billing === "monthly" ? "$12/mo" : "$120/yr"}</p>
-              {billing === "yearly" && <p className="label-months">2 months free</p>}
-            </div>
-          </label>
-          <input
-            type="radio"
-            name="radios"
-            id="pro"
-            defaultChecked={plan === "pro"}
-            onClick={() => {
-              updatePlan("pro");
-            }}
-          />
-          <label htmlFor="pro" className="label pro">
-            <span></span>
-            <div className="label-texts">
-              <h3>Pro</h3>
-              <p className="label-price-text">{billing === "monthly" ? "$15/mo" : "$150/yr"}</p>
-              {billing === "yearly" && <p className="label-months">2 months free</p>}
-            </div>
-          </label>
+          {fakePlans.map((p) => (
+            <>
+              <input
+                type="radio"
+                name="radios"
+                id={p.name}
+                defaultChecked={plan === p.name}
+                onClick={() => {
+                  updatePlan(p.name);
+                }}
+              />
+              <label htmlFor={p.name} className={`label ${p.name}`}>
+                <span></span>
+                <div className="label-texts">
+                  <h3>{p.title}</h3>
+                  <p className="label-price-text">
+                    {billing === "monthly" ? `$${p.price.monthly}/mo` : `$${p.price.yearly}/yr`}
+                  </p>
+                  {billing === "yearly" && (
+                    <p className="label-months">2 months free</p>
+                  )}
+                </div>
+              </label>
+            </>
+          ))}
         </div>
 
         <div className="billing-time">
