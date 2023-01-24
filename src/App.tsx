@@ -4,7 +4,8 @@ import PlanForm from "./components/PlanForm";
 import Summary from "./components/Summary";
 import UserForm from "./components/UserForm";
 import { useMultiStepForm } from "./useMultiStepForm";
-import { FormEvent, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
+import { fakeAddOns, fakePlans } from "./db/FakeData";
 
 function App() {
   type FormData = {
@@ -14,6 +15,7 @@ function App() {
     plan: string;
     billing: string;
     addons: string[];
+    total: number;
   };
 
   const INITIAL_DATA: FormData = {
@@ -23,6 +25,7 @@ function App() {
     plan: "arcade",
     billing: "monthly",
     addons: [],
+    total: 0,
   };
 
   const [data, setData] = useState(INITIAL_DATA);
@@ -34,15 +37,15 @@ function App() {
   }
 
   function updateAddOns(addon: string) {
-    if (data.addons.includes(addon)){
+    if (data.addons.includes(addon)) {
       setData((prev) => {
         return {
           ...prev,
           addons: prev.addons.filter((a) => a !== addon),
         };
       });
-      return
-    };
+      return;
+    }
 
     setData((prev) => {
       return {
@@ -70,9 +73,49 @@ function App() {
     });
   }
 
+  function UpdateTotal(total: number) {
+    setData((prev) => {
+      return {
+        ...prev,
+        total,
+      };
+    });
+  }
+
+  const totalCost = useMemo(() => {
+    const planPrice =
+      data.billing === "monthly"
+        ? fakePlans.find((p) => p.name === data.plan)?.price.monthly
+        : fakePlans.find((p) => p.name === data.plan)?.price.yearly;
+
+    if (!planPrice) return null;
+
+    const addonsPrice = data.addons.reduce((total, item) => {
+      const addon = fakeAddOns.find((a) => a.name === item);
+
+      if (!addon) return total;
+
+      if (data.billing === "monthly") {
+        total += addon.price.monthly;
+      } else {
+        total += addon.price.yearly;
+      }
+
+      return total;
+    }, 0);
+
+    return planPrice + addonsPrice;
+  }, [data.plan, data.billing, data.addons]);
+
+
   const steps = [
     <UserForm title="your info" {...data} updateFields={updateFields} />,
-    <PlanForm title="select plan" {...data} updatePlan={updatePlan} updateBilling={updateBilling} />,
+    <PlanForm
+      title="select plan"
+      {...data}
+      updatePlan={updatePlan}
+      updateBilling={updateBilling}
+    />,
     <AddOnsForm title="add-ons" {...data} updateAddOns={updateAddOns} />,
     <Summary title="summary" {...data} />,
   ];
@@ -81,11 +124,11 @@ function App() {
     useMultiStepForm(steps);
 
   const handleSubmit = (e: FormEvent) => {
+    UpdateTotal(totalCost!);
     e.preventDefault();
     if (isLastStep) {
       alert("You have successfully submitted the form!");
     }
-
     next();
   };
 
@@ -99,7 +142,9 @@ function App() {
                 key={i}
                 className={`step ${i === stepIndex ? "active" : ""}`}
               >
-                <div className="step-index"><span>{i + 1}</span></div>
+                <div className="step-index">
+                  <span>{i + 1}</span>
+                </div>
                 <div className="step-info">
                   <span className="step-num">STEP {i + 1}</span>
                   <span className="step-title">{steps[i].props.title}</span>
