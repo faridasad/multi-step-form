@@ -24,8 +24,8 @@ function PlanForm({
       <p>You have the option of monthly of yearly billing</p>
       <div className="selection-container">
         <div className="plans">
-          {fakePlans.map((p) => (
-            <>
+          {fakePlans.map((p, i) => (
+            <div key={i}>
               <input
                 type="radio"
                 name="radios"
@@ -47,7 +47,7 @@ function PlanForm({
                   )}
                 </div>
               </label>
-            </>
+            </div>
           ))}
         </div>
 

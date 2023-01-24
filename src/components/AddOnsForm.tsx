@@ -16,8 +16,8 @@ function AddOnsForm({ title, addons, billing, updateAddOns }: AddOnsProps) {
       <h2>Pick add-ons</h2>
       <p>Add-ons help enhance your gaming experience</p>
       <div className="add-ons">
-        {fakeAddOns.map((a) => (
-          <>
+        {fakeAddOns.map((a, i) => (
+          <div key={i}>
             <input
               type="checkbox"
               name={a.name}
@@ -38,7 +38,7 @@ function AddOnsForm({ title, addons, billing, updateAddOns }: AddOnsProps) {
                 {billing === "monthly" ? `+$${a.price.monthly}/mo` : `+$${a.price.monthly}/yr`}
               </p>
             </label>
-          </>
+          </div>
         ))}
       </div>
     </div>

@@ -286,6 +286,10 @@
   margin-top: 2rem;
 }
 
+.add-ons div {
+  width: 100%;
+}
+
 .add-ons input[type="checkbox"] {
   display: none;
 }
