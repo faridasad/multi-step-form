@@ -353,3 +353,94 @@
   color: hsl(243, 100%, 62%);
 }
 
+.summary-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 2rem;
+  background-color: hsl(217, 100%, 97%);
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.summary-container .plan {
+  width: 100%;
+  display: flex;
+  align-items: center;  
+  justify-content: space-between;
+}
+
+.summary-container .plan h3 {
+  color: hsl(213, 96%, 18%);
+  font-weight: 700;
+}
+
+.summary-container .plan .change-text {
+  color: hsl(231, 11%, 63%);
+  font-size: .8rem;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.summary-container .plan .plan-cost {
+  color: hsl(213, 96%, 18%);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.summary-container .addons {
+  width: 100%;
+  display: flex; 
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.summary-container .addons .addon-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.summary-container .addons .addon-item p {
+  color: hsl(231, 11%, 63%);
+  font-size: .8rem;
+  font-weight: 500;
+}
+
+.summary-container .addons .addon-item .addon-cost {
+  color: hsl(213, 96%, 18%);
+  font-weight: 500;
+}
+
+.br {
+  width: 100%;
+  height: 1px;
+  background-color: hsl(231, 11%, 63%);
+  opacity: 0.2;
+}
+
+
+.total-cost-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.total-cost-container p {
+  color: hsl(231, 11%, 63%);
+  font-size: .8rem;
+  font-weight: 500;
+}
+
+.total-cost-container .total-cost {
+  color: hsl(243, 100%, 62%);
+  font-weight: 700;
+  font-size: 1.25rem;
+}
