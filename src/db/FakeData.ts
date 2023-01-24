@@ -1,11 +1,11 @@
-interface FakeAddOns {
+type FakeAddOns = {
   name: string;
   title: string;
   description: string;
-  price: Price;
+  price: AddOnPrice;
 }
 
-interface Price {
+type AddOnPrice = {
   monthly: number;
   yearly: number;
 }
@@ -40,13 +40,13 @@ export const fakeAddOns: FakeAddOns[] = [
   },
 ];
 
-interface FakePlans {
+type FakePlans = {
   name: string;
   title: string;
-  price: Price;
+  price: PlanPrice;
 }
 
-interface Price {
+type PlanPrice = {
   monthly: number;
   yearly: number;
 }
