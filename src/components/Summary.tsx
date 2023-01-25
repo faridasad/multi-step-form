@@ -5,6 +5,7 @@ type SummaryProps = {
   plan: string;
   total: number;
   isSubmitted: boolean;
+  move: (index: number) => void;
 };
 
 import { fakeAddOns, fakePlans } from "../db/FakeData";
@@ -21,6 +22,7 @@ function Summary({
   plan,
   total,
   isSubmitted,
+  move
 }: SummaryProps) {
   return (
     <div className="wrapper">
@@ -36,7 +38,7 @@ function Summary({
                 <h3>{`${capitalizeFirstLetter(plan)} ${
                   billing === "monthly" ? " (Monthly)" : " (Yearly)"
                 }`}</h3>
-                <p className="change-text">Change</p>
+                <p className="change-text" onClick={() => move(1)}>Change</p>
               </div>
               <p className="plan-cost">
                 {billing === "monthly"
