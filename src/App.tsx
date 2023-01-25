@@ -71,7 +71,7 @@ function App() {
     });
   }
 
-  function UpdateTotal(total: number) {
+  function updateTotal(total: number) {
     setData((prev) => {
       return {
         ...prev,
@@ -117,11 +117,23 @@ function App() {
       updateBilling={updateBilling}
     />,
     <AddOnsForm title="add-ons" {...data} updateAddOns={updateAddOns} />,
-    <Summary title="summary" {...data} isSubmitted={isSubmitted} />,
+    <Summary title="summary" {...data} isSubmitted={isSubmitted} move={move} />,
   ];
 
-  const { stepIndex, step, next, prev, title, isFirstStep, isLastStep } =
-    useMultiStepForm(steps);
+  const {
+    stepIndex,
+    step,
+    next,
+    prev,
+    title,
+    isFirstStep,
+    isLastStep,
+    moveTo,
+  } = useMultiStepForm(steps);
+
+  function move(index: number) {
+    moveTo(index);
+  }
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -131,7 +143,7 @@ function App() {
       return;
     }
 
-    UpdateTotal(totalCost!);
+    updateTotal(totalCost!);
     next();
   };
 
