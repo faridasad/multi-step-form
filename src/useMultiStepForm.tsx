@@ -15,8 +15,13 @@ export function useMultiStepForm(steps: ReactElement[]) {
     });
   };
 
+  const moveTo = (index: number) => {
+    setStepIndex(index);
+  };
+
   return {
     stepIndex,
+    moveTo,
     next,
     prev,
     step: steps[stepIndex],
