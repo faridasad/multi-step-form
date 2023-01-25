@@ -28,8 +28,6 @@ function App() {
     total: 0,
   };
 
-  const [data, setData] = useState(INITIAL_DATA);
-
   function updateFields(fields: Partial<FormData>) {
     setData((prev) => {
       return { ...prev, ...fields };
@@ -82,6 +80,9 @@ function App() {
     });
   }
 
+  const [data, setData] = useState(INITIAL_DATA);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const totalCost = useMemo(() => {
     const planPrice =
       data.billing === "monthly"
@@ -107,7 +108,6 @@ function App() {
     return planPrice + addonsPrice;
   }, [data.plan, data.billing, data.addons]);
 
-
   const steps = [
     <UserForm title="your info" {...data} updateFields={updateFields} />,
     <PlanForm
@@ -117,18 +117,21 @@ function App() {
       updateBilling={updateBilling}
     />,
     <AddOnsForm title="add-ons" {...data} updateAddOns={updateAddOns} />,
-    <Summary title="summary" {...data} />,
+    <Summary title="summary" {...data} isSubmitted={isSubmitted} />,
   ];
 
   const { stepIndex, step, next, prev, title, isFirstStep, isLastStep } =
     useMultiStepForm(steps);
 
   const handleSubmit = (e: FormEvent) => {
-    UpdateTotal(totalCost!);
     e.preventDefault();
+
     if (isLastStep) {
-      alert("You have successfully submitted the form!");
+      setIsSubmitted(true);
+      return;
     }
+
+    UpdateTotal(totalCost!);
     next();
   };
 
@@ -156,18 +159,20 @@ function App() {
         <div className="form-content">
           <form className="current-form" onSubmit={handleSubmit}>
             {step}
-            <div className="buttons">
-              {!isFirstStep ? (
-                <button type="button" className="prev-btn" onClick={prev}>
-                  Go Back
+            {!isSubmitted && (
+              <div className="buttons">
+                {!isFirstStep ? (
+                  <button type="button" className="prev-btn" onClick={prev}>
+                    Go Back
+                  </button>
+                ) : (
+                  <span></span>
+                )}
+                <button type="submit" className="next-btn">
+                  {!isLastStep ? "Next Step" : "Submit"}
                 </button>
-              ) : (
-                <span></span>
-              )}
-              <button type="submit" className="next-btn">
-                {!isLastStep ? "Next Step" : "Submit"}
-              </button>
-            </div>
+              </div>
+            )}
           </form>
         </div>
       </div>
