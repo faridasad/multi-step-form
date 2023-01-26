@@ -155,7 +155,7 @@ function App() {
             return (
               <div
                 key={i}
-                className={`step ${i === stepIndex ? "active" : ""}`}
+                className={`step${i === stepIndex ? " active" : ""}`}
               >
                 <div className="step-index">
                   <span>{i + 1}</span>
